@@ -1,0 +1,17 @@
+.loginForm{
+    margin: 12% auto;
+    height: 300px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #61dafb;
+    border-radius: 15px;
+
+}
+.textError{
+    color:red;
+    margin: -5px 0 15px 0;
+    height: 20px;
+}

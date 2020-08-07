@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {connect} from "react-redux";
+import {popupTextAC} from "./Redux/Reducer";
+import Contacts from "./Components/Contacts";
+import Login from "./Components/login"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Popup from "./Components/Popup";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export const App = ({isAuth, popupText, popupTextAC}) => {
+
+
+    if (popupText !== "") setTimeout(() => popupTextAC(""), 3000)
+    return <div>
+        {(isAuth === 1 || isAuth === 2) && <Login/>}
+        {isAuth === 0 && <Contacts/>}
+
+        {popupText !== "" && <Popup/>}
     </div>
-  );
+}
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.Reducer.isAuth,
+        popupText: state.Reducer.popupText,
+    }
 }
 
-export default App;
+export default connect(mapStateToProps, {popupTextAC})(App)
+
+
